@@ -1,26 +1,159 @@
+@import "../constants/index.css";
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: var(--color-background);
+  --foreground: var(--color-text-primary);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-primary: var(--color-primary);
+  --color-primary-hover: var(--color-primary-hover);
+  --color-secondary: var(--color-secondary);
+  --color-secondary-hover: var(--color-secondary-hover);
+  --color-surface: var(--color-surface);
+  --color-card: var(--color-card);
+  --color-border: var(--color-border);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --font-sans: var(--font-primary);
+  --font-serif: var(--font-heading);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Heading font styling */
+.font-display {
+  font-family: var(--font-heading);
+}
+
+/* Handwriting script font styling */
+.font-handwriting {
+  font-family: var(--font-handwriting);
+}
+
+/* =========================================================================
+   Content Entry & Scroll Reveal Animations
+   ========================================================================= */
+
+@keyframes entryFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes entryFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes entryScaleUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.96) translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Page mount transition */
+.page-entry-animate {
+  animation: entryFadeInUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform;
+}
+
+/* Scroll reveal sections */
+.reveal-init {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-visible {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Stagger delay utilities */
+.reveal-delay-1 {
+  transition-delay: 100ms;
+}
+.reveal-delay-2 {
+  transition-delay: 200ms;
+}
+.reveal-delay-3 {
+  transition-delay: 300ms;
+}
+.reveal-delay-4 {
+  transition-delay: 400ms;
+}
+
+/* Shimmer effect for skeleton loading on slow networks */
+@keyframes skeletonShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    #ede7da 0%,
+    #f6f1e5 50%,
+    #ede7da 100%
+  );
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.8s infinite ease-in-out;
+}
+
+/* Standalone animation classes */
+.animate-entry {
+  animation: entryFadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-entry-fade {
+  animation: entryFadeIn 0.6s ease-out both;
+}
+
+.animate-entry-scale {
+  animation: entryScaleUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .page-entry-animate,
+  .reveal-init,
+  .animate-entry,
+  .animate-entry-fade,
+  .animate-entry-scale {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

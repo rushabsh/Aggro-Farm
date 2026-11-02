@@ -1,0 +1,45 @@
+:root {
+  /* Brand colors from Aggro Farm Design */
+  --color-primary: #1b4329;          /* Deep Forest Green */
+  --color-primary-hover: #143520;    /* Dark Forest Green */
+  --color-primary-light: #eaf2ec;    /* Soft Green Tint */
+  --color-secondary: #df9c16;        /* Golden Honey/Mustard */
+  --color-secondary-hover: #c8890e;  /* Deep Golden Amber */
+  --color-secondary-light: #fef8eb;  /* Warm Gold Tint */
+
+  /* Backgrounds & Surfaces */
+  --color-background: #faf8f2;       /* Warm Farmstead Cream */
+  --color-surface: #ffffff;          /* Pure White */
+  --color-card: #ffffff;
+  --color-card-subtle: #f5f2e9;
+  --color-white: #ffffff;
+  --color-black: #0c150f;
+
+  /* Typography / Text colors */
+  --color-text-primary: #18221b;     /* Deep Charcoal Green */
+  --color-text-secondary: #5e6d63;   /* Muted Green-Grey */
+  --color-text-muted: #7c8c82;
+
+  /* Borders */
+  --color-border: #e8e4d9;           /* Warm Sand Border */
+  --color-border-light: #f2eee4;
+
+  /* Status / Feedback colors */
+  --color-success: #1b4329;
+  --color-warning: #df9c16;
+  --color-error: #dc2626;
+  --color-info: #2563eb;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #0f1c13;
+    --color-surface: #142419;
+    --color-card: #18291d;
+    --color-card-subtle: #1c3022;
+    --color-text-primary: #f2f7f3;
+    --color-text-secondary: #9cb1a3;
+    --color-border: #24382a;
+    --color-border-light: #1e3023;
+  }
+}
